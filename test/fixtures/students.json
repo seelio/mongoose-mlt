@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Alice",
+    "university": "University of Michigan",
+    "graduationYear": 2015,
+    "department": "College of Engineering",
+    "program": "Computer Engineering",
+    "degree": "BSE"
+  },
+  {
+    "name": "Bob",
+    "university": "Michigan State University",
+    "graduationYear": 2016,
+    "department": "College of Engineering",
+    "program": "Electrical and Computer Engineering",
+    "degree": "BSE"
+  },
+  {
+    "name": "Cecilia",
+    "university": "University of Michigan",
+    "graduationYear": 2015,
+    "department": "School of Kinesiology",
+    "program": "Biomechanics",
+    "degree": "MSc"
+  },
+  {
+    "name": "David",
+    "university": "University of Kentucky",
+    "graduationYear": 2016,
+    "department": "College of Engineering",
+    "program": "Computer Engineering",
+    "degree": "BSE"
+  },
+  {
+    "name": "Ethan",
+    "university": "Massachusetts Institute of Technology",
+    "graduationYear": 2016,
+    "department": "School of Kinesiology",
+    "program": "Biomechanics",
+    "degree": "MSc"
+  }
+]
