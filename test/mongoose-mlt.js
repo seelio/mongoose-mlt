@@ -263,7 +263,7 @@ describe('Mongoose mlt plugin', function() {
     });
 
     it('should run mlt as a model prototype method', function(done) {
-      student.mlt(function(err, mlt) {
+      student.mlt('name', function(err, mlt) {
         if (err) return done(err);
         expect(mlt).to.be.ok;
         expect(mlt).to.be.an.instanceof(Array);
