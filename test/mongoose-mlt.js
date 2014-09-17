@@ -243,6 +243,25 @@ describe('Mongoose mlt plugin', function() {
       });
     });
 
+    it('should return an empty array for non-existent _ids', function(done) {
+      Student.mlt('123456789012345678901234', function(err, mlt) {
+        if (err) return done(err);
+        expect(mlt).to.be.ok;
+        expect(mlt).to.be.an.instanceof(Array);
+        expect(mlt).to.have.length(0);
+        done();
+      });
+    });
+
+    it('should return an error for invalid _ids', function(done) {
+      Student.mlt('123456', function(err, mlt) {
+        expect(err).to.be.ok;
+        expect(err).to.be.an.instanceof(Error);
+        expect(mlt).to.not.be.ok;
+        done();
+      });
+    });
+
     it('should run mlt as a model prototype method', function(done) {
       student.mlt(function(err, mlt) {
         if (err) return done(err);
