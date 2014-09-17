@@ -40,12 +40,5 @@ MyModel.find({ title: 'Seed', body: 'This is the seed document' }, function(err,
 });
 ```
 
-##### Prototype method as a seed
-```javascript
-MyModel.find({ title: 'Seed', body: 'This is the seed document' }, function(err, modelSeed) {
-  modelSeed.mlt(callback);
-});
-```
-
 The callback for `mlt` has `err` (which is `null` on success) and `results`
 (which is an array of relevant documents, sorted by similarity).
