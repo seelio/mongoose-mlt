@@ -16,7 +16,6 @@ describe('Mongoose mlt plugin', function() {
       ContentSchema.index({ 'content': 'text' });
       ContentSchema.plugin(mongooseMLT);
       Content = mongoose.model('Content', ContentSchema);
-      //-mongooseMLT(Content);
       // Add data to test database
       var contents = require('./fixtures/content.json');
       var remaining = contents.length;
