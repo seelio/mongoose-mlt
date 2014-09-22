@@ -33,6 +33,13 @@ describe('Mongoose mlt plugin', function() {
       expect(Content.mlt).to.be.a.function;
     });
 
+    it('should determine which indexed fields to use', function() {
+      var fields = Content._mltGetIndexedFields();
+      expect(fields).to.be.ok;
+      expect(fields).to.be.an.instanceof(Array);
+      expect(fields).to.have.members(['content']);
+    });
+
     it('should calculate the term frequency vector for the seed document', function() {
       seed = { content: 'This node document is a good example document about node' };
       var tf = Content._mltTf(seed);
@@ -120,6 +127,13 @@ describe('Mongoose mlt plugin', function() {
     it('should add the mlt plugin to the schema', function() {
       expect(Student).to.contain.key('mlt');
       expect(Student.mlt).to.be.a.function;
+    });
+
+    it('should determine which indexed fields to use', function() {
+      var fields = Student._mltGetIndexedFields();
+      expect(fields).to.be.ok;
+      expect(fields).to.be.an.instanceof(Array);
+      expect(fields).to.have.members(['name', 'university', 'graduationYear', 'department', 'program', 'degree']);
     });
 
     it('should calculate the term frequency vector for the seed document', function() {
