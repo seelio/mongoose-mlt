@@ -41,13 +41,13 @@ describe('Mongoose mlt plugin', function() {
     });
 
     it('should calculate the term frequency vector for the seed document', function() {
-      seed = { content: 'This node document is a good example document about node' };
+      seed = { content: 'This example node document is a good example document about node' };
       var tf = Content._mltTf(seed);
       expect(tf).to.be.ok;
-      expect(tf).to.have.keys(['docum', 'good', 'exampl', 'node']);
+      expect(tf).to.have.keys(['docum', 'exampl', 'node']);
+      expect(tf).to.not.have.keys(['good']);
       expect(tf['docum']).to.equal(2);
-      expect(tf['good']).to.equal(1);
-      expect(tf['exampl']).to.equal(1);
+      expect(tf['exampl']).to.equal(2);
       expect(tf['node']).to.equal(2);
     });
 
@@ -72,7 +72,7 @@ describe('Mongoose mlt plugin', function() {
         expect(tfidf).to.have.keys(['example', 'node']);
         expect(tfidf).to.not.have.keys(['document', 'good']);
         expect(tfidf['example']).to.be.a.number;
-        expect(tfidf['example']).to.equal(Math.log(4 / 1) * 1)
+        expect(tfidf['example']).to.equal(Math.log(4 / 1) * 2)
         expect(tfidf['node']).to.be.a.number;
         expect(tfidf['node']).to.equal(Math.log(4 / 3) * 2);
         done();
@@ -84,7 +84,7 @@ describe('Mongoose mlt plugin', function() {
         if (err) return done(err);
         var query = Content._mltMakeQuery(tfidf);
         expect(query).to.be.ok;
-        expect(query).to.equal('node example example');
+        expect(query).to.equal('example example example example node');
         done();
       });
     });
@@ -110,7 +110,7 @@ describe('Mongoose mlt plugin', function() {
     before(function(done) {
       StudentSchema = mongoose.Schema({ name: String, university: String, graduationYear: Number, department: String, program: String, degree: String });
       StudentSchema.index({ '$**': 'text' });
-      StudentSchema.plugin(mongooseMLT);
+      StudentSchema.plugin(mongooseMLT, { tfThreshold: 1 });
       Student = mongoose.model('Student', StudentSchema);
       // Add data to test database
       var students = require('./fixtures/students.json');

@@ -15,8 +15,26 @@ Define your schema, define your text indexes, and then load the plugin:
 ```javascript
 var MySchema = new mongoose.Schema({ ... });
 MySchema.index({ '$**': 'text' });
-MySchema.plugin(require('mongoose-mlt'));
+MySchema.plugin(require('mongoose-mlt'), {
+  limit: 100,
+  tfThreshold: 2,
+  termLimit: 25
+});
 ```
+The following are the possible options you can pass to the plugin:
+
+* `limit`: Same as `mongoose.models.Model.find().limit(n)`.
+  It limits the number of returned results.
+  Default is 100.
+* `tfThreshold`: Determines the minimium term-frequency for any given term to be considered for search.
+  Use a higher number to provide faster matching when using large document bodies.
+  Use a lower number to provide more accurate matching when using small document bodies.
+  Default is 2.
+* `termLimit`: Limits the maximum number of terms to be used for search.
+  It uses the `n` highest scoring terms.
+  Use a higher number to provide more but less relevant results.
+  Use a lower number to provide fewer but more relevant results.
+  Default is 25.
 
 There are several ways to use the `mlt` functionality. They all require a seed
 document or ObjectId:
