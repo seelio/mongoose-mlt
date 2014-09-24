@@ -40,8 +40,14 @@ describe('Mongoose mlt plugin', function() {
       expect(fields).to.have.members(['content']);
     });
 
-    it('should calculate the term frequency vector for the seed document', function() {
+    it('should parse the query and get which terms to use', function() {
       seed = { content: 'This example node document is a good example document about node' };
+      var terms = Content._mltParseQuery(seed);
+      expect(terms).to.be.ok;
+      expect(terms).to.have.members(['example', 'node', 'document', 'good']);
+    });
+
+    it('should calculate the term frequency vector for the seed document', function() {
       var tf = Content._mltTf(seed);
       expect(tf).to.be.ok;
       expect(tf).to.have.keys(['docum', 'exampl', 'node']);
@@ -136,7 +142,7 @@ describe('Mongoose mlt plugin', function() {
       expect(fields).to.have.members(['name', 'university', 'graduationYear', 'department', 'program', 'degree']);
     });
 
-    it('should calculate the term frequency vector for the seed document', function() {
+    it('should parse the query and get which terms to use', function() {
       seed = {
         name: 'Victor Kareh',
         university: 'University of Michigan',
@@ -145,6 +151,12 @@ describe('Mongoose mlt plugin', function() {
         program: 'Computer Engineering',
         degree: 'BSE'
       };
+      var terms = Student._mltParseQuery(seed);
+      expect(terms).to.be.ok;
+      expect(terms).to.have.members(['victor', 'kareh', 'university', 'michigan', '2005', 'college', 'engineering', 'computer', 'engineering', 'bse']);
+    });
+
+    it('should calculate the term frequency vector for the seed document', function() {
       var tf = Student._mltTf(seed);
       expect(tf).to.be.ok;
       expect(tf).to.have.keys(['2005', 'victor', 'kareh', 'univers', 'michigan', 'colleg', 'engin', 'comput', 'bse']);
