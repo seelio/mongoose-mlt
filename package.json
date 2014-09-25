@@ -1,7 +1,7 @@
 {
   "name": "mongoose-mlt",
   "description": "Provide more-like-this search algorithm for MongoDB",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "author": {
     "name": "Victor Kareh",
     "email": "victor@seelio.com"
@@ -9,7 +9,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git://github.com/vkareh/mongoose-mlt"
+    "url": "git://github.com/seelio/mongoose-mlt"
   },
   "main": "./index.js",
   "keywords": [
