@@ -252,7 +252,7 @@ describe('Mongoose mlt plugin', function() {
     });
 
     it('should find similar documents based on _id', function(done) {
-      Student.mlt(_id, 'name', function(err, mlt) {
+      Student.mlt(_id, null, 'name', function(err, mlt) {
         if (err) return done(err);
         expect(mlt).to.be.ok;
         expect(mlt).to.be.an.instanceof(Array);

@@ -58,5 +58,12 @@ MyModel.find({ title: 'Seed', body: 'This is the seed document' }, function(err,
 });
 ```
 
-The callback for `mlt` has `err` (which is `null` on success) and `results`
+The `mlt` method itself takes the following parameters:
+```javascript
+MyModel.mlt(seed, conditions, fields, options, callback);
+```
+where `seed` is the seed document or `_id`, and `conditions`, `fields`,
+`options`, and `callback` are the same as you would pass to `Model.find()`.
+
+The `callback` for `mlt` has `err` (which is `null` on success) and `results`
 (which is an array of relevant documents, sorted by similarity).

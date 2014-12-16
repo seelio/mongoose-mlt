@@ -1,7 +1,7 @@
 {
   "name": "mongoose-mlt",
   "description": "Provide more-like-this search algorithm for MongoDB",
-  "version": "0.1.7",
+  "version": "0.2.0",
   "author": {
     "name": "Victor Kareh",
     "email": "victor@seelio.com"
